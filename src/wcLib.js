@@ -29,15 +29,16 @@ const wc = function(userInput, fs) {
   let wordCount = countWords(fileContents);
   let byteCount = countBytes(fileContents);
 
-  if (option == "line") {
+  if (option.length === 3) {
+    let counts = { lineCount, wordCount, byteCount, fileName };
+    return formatOutput(counts);
+  }
+  if (option.includes("line")) {
     return TAB + lineCount + SPACE + fileName;
   }
-  if (option == "byte") {
+  if (option.includes("byte")) {
     return TAB + byteCount + SPACE + fileName;
   }
-
-  let counts = { lineCount, wordCount, byteCount, fileName };
-  return formatOutput(counts);
 };
 
 module.exports = {

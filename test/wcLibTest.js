@@ -13,7 +13,10 @@ let fs = mockReader(expectedFilePaths);
 
 describe("wc", function() {
   it("should return number of lines,words and characters in given file", function() {
-    let actualOutput = wc({ fileName: "lines" }, fs);
+    let actualOutput = wc(
+      { option: ["line", "word", "byte"], fileName: "lines" },
+      fs
+    );
     let expectedOutput = "\t5\t6\t11 lines";
     assert.equal(actualOutput, expectedOutput);
   });
