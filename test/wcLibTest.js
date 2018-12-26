@@ -15,6 +15,12 @@ describe("wc", function() {
   it("should return number of lines,words and characters in given file", function() {
     let actualOutput = wc(["lines"], fs);
     let expectedOutput = "\t5\t6\t11 lines";
-    assert.deepEqual(actualOutput, expectedOutput);
+    assert.equal(actualOutput, expectedOutput);
+  });
+
+  it("should return only lineCount and fileName 'node wc.js -l file1'", function() {
+    let actualOutput = wc(["-l", "digits"], fs);
+    let expectedOutput = "\t9 digits";
+    assert.equal(actualOutput, expectedOutput);
   });
 });

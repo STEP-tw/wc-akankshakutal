@@ -1,2 +1,6 @@
-* default case (wc with a file)
-  
+* implement line count functionality
+
+* implement parser
+
+* move functions to utils
+
