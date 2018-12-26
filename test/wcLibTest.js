@@ -32,4 +32,10 @@ describe("wc", function() {
     let expectedOutput = "\t11 lines";
     assert.equal(actualOutput, expectedOutput);
   });
+
+  it("should return only wordCount and fileName 'node wc.js -w file1'", function() {
+    let actualOutput = wc({ option: "word", fileName: "lines" }, fs);
+    let expectedOutput = "\t6 lines";
+    assert.equal(actualOutput, expectedOutput);
+  });
 });
