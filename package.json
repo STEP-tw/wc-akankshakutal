@@ -1,0 +1,25 @@
+{
+  "name": "wc-akankshakutal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "wc.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/STEP-tw/wc-akankshakutal.git"
+  },
+  "author": "akanksha kutal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/STEP-tw/wc-akankshakutal/issues"
+  },
+  "homepage": "https://github.com/STEP-tw/wc-akankshakutal#readme",
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}
