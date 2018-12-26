@@ -1,0 +1,4 @@
+./testData/emptyFile
+-l|./testData/lines
+-c|./testData/lines
+
