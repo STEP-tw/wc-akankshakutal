@@ -15,7 +15,11 @@ const countBytes = function(text) {
 };
 
 const includesAll = function(option) {
-  return option.includes("l") && option.includes("w") && option.includes("c");
+  return (
+    option.includes("line") &&
+    option.includes("word") &&
+    option.includes("byte")
+  );
 };
 
 const getCounts = function(contents, option, fileName) {
@@ -23,13 +27,13 @@ const getCounts = function(contents, option, fileName) {
   let wordCount = countWords(contents);
   let byteCount = countBytes(contents);
   let counts = [];
-  if (option.includes("l")) {
+  if (option.includes("line")) {
     counts.push(lineCount);
   }
-  if (option.includes("w")) {
+  if (option.includes("word")) {
     counts.push(wordCount);
   }
-  if (option.includes("c")) {
+  if (option.includes("byte")) {
     counts.push(byteCount);
   }
   counts.push(fileName);
