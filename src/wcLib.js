@@ -7,39 +7,36 @@ const countLines = function(text) {
 };
 
 const countWords = function(text) {
-  return text.split(/["\n"," "]/).filter(x => x).length;
+  return text.split(/[ \n]+/).filter(x => x).length;
 };
 
 const countBytes = function(text) {
   return text.split(EMPTY).length;
 };
 
-const getCounts = function(contents, option, fileName) {
-  let lineCount = countLines(contents);
-  let wordCount = countWords(contents);
-  let byteCount = countBytes(contents);
-  let counts = [];
-  const wcOptions = {
-    line: lineCount,
-    word: wordCount,
-    byte: byteCount
-  };
-  counts = ["line", "word", "byte"].filter(x => option.includes(x));
-  counts = counts.map(x => wcOptions[x]);
-  counts.push(fileName);
+const wcOptionCounter = {
+  line: countLines,
+  word: countWords,
+  byte: countBytes
+};
+
+const getCounts = function(contents, option) {
+  let counts = ["line", "word", "byte"].filter(x => option.includes(x));
+  counts = counts.map(option => wcOptionCounter[option](contents));
   return counts;
 };
 
-const getAllCounts = function(fs, option, fileName) {
+const getFileCounts = function(fs, option, fileName) {
   let { readFileSync } = fs;
   let contents = readFileSync(fileName, "utf8");
-  let counts = getCounts(contents, option, fileName);
-  return counts;
+  let fileCounts = getCounts(contents, option);
+  fileCounts.push(fileName);
+  return fileCounts;
 };
 
 const wc = function(userInput, fs) {
   let { option, fileNames } = userInput;
-  let counts = fileNames.map(getAllCounts.bind(null, fs, option));
+  let counts = fileNames.map(getFileCounts.bind(null, fs, option));
   return formatter(counts);
 };
 
