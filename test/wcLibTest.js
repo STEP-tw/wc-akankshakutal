@@ -17,25 +17,25 @@ describe("wc", function() {
       { option: ["l", "w", "c"], fileNames: ["lines"] },
       fs
     );
-    let expectedOutput = "\t5\t6\t11 lines";
+    let expectedOutput = "\t5\t6\t11\tlines";
     assert.equal(actualOutput, expectedOutput);
   });
 
   it("should return only lineCount and fileNames 'node wc.js -l file1'", function() {
     let actualOutput = wc({ option: "l", fileNames: ["digits"] }, fs);
-    let expectedOutput = "\t9 digits";
+    let expectedOutput = "\t9\tdigits";
     assert.equal(actualOutput, expectedOutput);
   });
 
   it("should return only byteCount and fileNames 'node wc.js -c file1'", function() {
     let actualOutput = wc({ option: "c", fileNames: ["lines"] }, fs);
-    let expectedOutput = "\t11 lines";
+    let expectedOutput = "\t11\tlines";
     assert.equal(actualOutput, expectedOutput);
   });
 
   it("should return only wordCount and fileNames 'node wc.js -w file1'", function() {
     let actualOutput = wc({ option: "w", fileNames: ["lines"] }, fs);
-    let expectedOutput = "\t6 lines";
+    let expectedOutput = "\t6\tlines";
     assert.equal(actualOutput, expectedOutput);
   });
 });

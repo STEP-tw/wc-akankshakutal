@@ -1,11 +1,6 @@
-const {
-  defaultFormatter,
-  lineFormatter,
-  byteFormatter,
-  wordFormatter
-} = require("./formatter.js");
+const { formatter } = require("./formatter.js");
 
-const { NEWLINE, EMPTY } = require("./constants");
+const { NEWLINE, EMPTY } = require("./constants.js");
 
 const countLines = function(text) {
   return text.split(NEWLINE).length - 1;
@@ -23,31 +18,36 @@ const includesAll = function(option) {
   return option.includes("l") && option.includes("w") && option.includes("c");
 };
 
-const getCounts = function(contents) {
+const getCounts = function(contents, option, fileName) {
   let lineCount = countLines(contents);
   let wordCount = countWords(contents);
   let byteCount = countBytes(contents);
-  return { lineCount, wordCount, byteCount };
+  counts = [lineCount, wordCount, byteCount, fileName];
+  if (includesAll(option)) {
+    return counts;
+  }
+  if (option.includes("l")) {
+    return [lineCount, fileName];
+  }
+  if (option.includes("w")) {
+    return [wordCount, fileName];
+  }
+  if (option.includes("c")) {
+    return [byteCount, fileName];
+  }
+};
+
+const getAllCounts = function(fs, option, fileName) {
+  let { readFileSync } = fs;
+  let contents = readFileSync(fileName, "utf8");
+  let counts = getCounts(contents, option, fileName);
+  return counts;
 };
 
 const wc = function(userInput, fs) {
   let { option, fileNames } = userInput;
-  let fileContents = fs.readFileSync(fileNames[0], "utf8");
-  let counts = getCounts(fileContents);
-  if (includesAll(option)) {
-    return defaultFormatter(counts, fileNames[0]);
-  }
-  if (option.includes("l")) {
-    return lineFormatter(counts, fileNames[0]);
-  }
-
-  if (option.includes("w")) {
-    return wordFormatter(counts, fileNames[0]);
-  }
-
-  if (option.includes("c")) {
-    return byteFormatter(counts, fileNames[0]);
-  }
+  let counts = fileNames.map(getAllCounts.bind(null, fs, option));
+  return formatter(counts);
 };
 
 module.exports = {

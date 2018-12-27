@@ -1,31 +1,32 @@
-const { TAB, SPACE, EMPTY } = require("./constants.js");
+const { NEWLINE, TAB } = require("./constants.js");
 
-const defaultFormatter = function(
-  { lineCount, wordCount, byteCount },
-  fileNames
-) {
-  const counts = [EMPTY, lineCount, wordCount, byteCount];
-  return counts.join(TAB) + SPACE + fileNames;
+const addLists = function(list1, list2) {
+  let result = [];
+  for (let index = 0; index < list1.length; index++) {
+    result.push(list1[index] + list2[index]);
+  }
+  result[result.length - 1] = "total";
+  return result;
 };
 
-const lineFormatter = function({ lineCount }, fileNames) {
-  const count = [EMPTY, lineCount];
-  return count.join(TAB) + SPACE + fileNames;
+const replaceEndElement = function(list, newElement) {
+  list[list.length] = newElement;
+  return list;
 };
 
-const wordFormatter = function({ wordCount }, fileNames) {
-  const count = [EMPTY, wordCount];
-  return count.join(TAB) + SPACE + fileNames;
-};
+const formatter = function(counts) {
+  let output = counts.map(count => {
+    return TAB + count.join(TAB);
+  });
 
-const byteFormatter = function({ byteCount }, fileNames) {
-  const count = [EMPTY, byteCount];
-  return count.join(TAB) + SPACE + fileNames;
+  if (counts.length === 1) {
+    return output.join(" ");
+  }
+
+  let total = TAB + counts.reduce(addLists).join(TAB);
+  return replaceEndElement(output, total).join(NEWLINE);
 };
 
 module.exports = {
-  defaultFormatter,
-  lineFormatter,
-  byteFormatter,
-  wordFormatter
+  formatter
 };

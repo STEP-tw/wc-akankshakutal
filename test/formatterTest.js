@@ -1,43 +1,39 @@
 const assert = require("assert");
-const {
-  defaultFormatter,
-  lineFormatter,
-  byteFormatter,
-  wordFormatter
-} = require("../src/formatter.js");
+const { formatter } = require("../src/formatter.js");
 
-describe("defaultFormatter", function() {
+describe("formatter", function() {
   it("should return string with all options", function() {
-    let counts = { lineCount: 10, wordCount: 20, byteCount: 40 };
-    let actualOutput = defaultFormatter(counts, "Lines");
-    let expectedOutput = "\t10\t20\t40 Lines";
+    let counts = [[10, 20, 40, "Lines"]];
+    let actualOutput = formatter(counts);
+    let expectedOutput = "\t10\t20\t40\tLines";
     assert.equal(actualOutput, expectedOutput);
   });
-});
 
-describe("lineFormatter", function() {
-  it("should return string with all options", function() {
-    let counts = { lineCount: 10, wordCount: 20, byteCount: 40 };
-    let actualOutput = lineFormatter(counts, "Lines");
-    let expectedOutput = "\t10 Lines";
+  it("should return string with two counts", function() {
+    let counts = [[20, 40, "Lines"]];
+    let actualOutput = formatter(counts);
+    let expectedOutput = "\t20\t40\tLines";
     assert.equal(actualOutput, expectedOutput);
   });
-});
 
-describe("wordFormatter", function() {
-  it("should return string with all options", function() {
-    let counts = { lineCount: 10, wordCount: 20, byteCount: 40 };
-    let actualOutput = wordFormatter(counts, "Lines");
-    let expectedOutput = "\t20 Lines";
+  it("should return string with only one count", function() {
+    let counts = [[10, "Lines"]];
+    let actualOutput = formatter(counts);
+    let expectedOutput = "\t10\tLines";
     assert.equal(actualOutput, expectedOutput);
   });
-});
 
-describe("byteFormatter", function() {
-  it("should return string with all options", function() {
-    let counts = { lineCount: 10, wordCount: 20, byteCount: 40 };
-    let actualOutput = byteFormatter(counts, "Lines");
-    let expectedOutput = "\t40 Lines";
+  it("should return string with only file", function() {
+    let counts = [["Lines"]];
+    let actualOutput = formatter(counts);
+    let expectedOutput = "\tLines";
+    assert.equal(actualOutput, expectedOutput);
+  });
+
+  it("should return string with multiple files", function() {
+    let counts = [[40, "Lines"], [50, "digits"]];
+    let actualOutput = formatter(counts);
+    let expectedOutput = "\t40\tLines\n\t50\tdigits\n\t90\ttotal";
     assert.equal(actualOutput, expectedOutput);
   });
 });
