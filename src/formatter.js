@@ -1,12 +1,5 @@
 const { NEWLINE, TAB, EMPTY } = require("./constants.js");
-
-const addLists = function(list1, list2) {
-  let result = [];
-  for (let index = 0; index < list1.length; index++) {
-    result.push(list1[index] + list2[index]);
-  }
-  return result;
-};
+const { addLists } = require("./utils/array.js");
 
 const formatter = function(counts) {
   let output = counts.map(count => {
@@ -16,8 +9,8 @@ const formatter = function(counts) {
     return output.join(EMPTY);
   }
   let total = counts.reduce(addLists);
-  total.pop();
-  total.push("total");
+  let length = total.length;
+  total[length - 1] = "total";
   total = TAB + total.join(TAB);
   return output.concat(total).join(NEWLINE);
 };

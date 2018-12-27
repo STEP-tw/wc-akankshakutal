@@ -1,17 +1,17 @@
 const { formatter } = require("./formatter.js");
 
-const { NEWLINE, EMPTY } = require("./constants.js");
+const { getLines, getWords, getBytes } = require("./utils/string.js");
 
-const countLines = function(text) {
-  return text.split(NEWLINE).length - 1;
+const countLines = function(lines) {
+  return getLines(lines).length - 1;
 };
 
-const countWords = function(text) {
-  return text.split(/[ \n]+/).filter(x => x).length;
+const countWords = function(words) {
+  return getWords(words).length;
 };
 
-const countBytes = function(text) {
-  return text.split(EMPTY).length;
+const countBytes = function(bytes) {
+  return getBytes(bytes).length;
 };
 
 const wcOptionCounter = {

@@ -4,10 +4,11 @@ const creatObject = function(option, fileNames) {
   return { option, fileNames };
 };
 
+const options = { l: "line", w: "word", c: "byte" };
+
 const parse = function(userInput) {
   let option = [];
   let index = 0;
-  const options = { l: "line", w: "word", c: "byte" };
   while (userInput[index].startsWith(HYPHEN)) {
     let type = userInput[index]
       .slice(1)
