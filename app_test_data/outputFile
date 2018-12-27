@@ -1,4 +1,76 @@
-	0	0	0 ./testData/emptyFile
-	9 ./testData/lines
-	20 ./testData/lines
-	10 ./testData/lines
+	0	0	0	./testData/emptyFile
+	9	./testData/lines
+	20	./testData/lines
+	10	./testData/lines
+	9	10	20	./testData/lines
+	6	10	48	./testData/words
+	15	20	68	total
+	9	10	./testData/lines
+	6	10	./testData/words
+	15	20	total
+	9	10	./testData/lines
+	6	10	./testData/words
+	15	20	total
+	9	20	./testData/lines
+	6	48	./testData/words
+	15	68	total
+	9	20	./testData/lines
+	6	48	./testData/words
+	15	68	total
+	10	20	./testData/lines
+	10	48	./testData/words
+	20	68	total
+	10	20	./testData/lines
+	10	48	./testData/words
+	20	68	total
+	9	10	20	./testData/lines
+	6	10	48	./testData/words
+	15	20	68	total
+	9	10	20	./testData/lines
+	6	10	48	./testData/words
+	15	20	68	total
+	10	20	./testData/lines
+	10	48	./testData/words
+	20	68	total
+	9	10	20	./testData/lines
+	6	10	48	./testData/words
+	15	20	68	total
+	9	10	20	./testData/lines
+	6	10	48	./testData/words
+	15	20	68	total
+	9	10	./testData/lines
+	6	10	./testData/words
+	15	20	total
+	9	20	./testData/lines
+	6	48	./testData/words
+	15	68	total
+	10	20	./testData/lines
+	10	48	./testData/words
+	20	68	total
+	9	10	./testData/lines
+	6	10	./testData/words
+	15	20	total
+	9	20	./testData/lines
+	6	48	./testData/words
+	15	68	total
+	10	20	./testData/lines
+	10	48	./testData/words
+	20	68	total
+	9	10	20	./testData/lines
+	6	10	48	./testData/words
+	15	20	68	total
+	9	10	20	./testData/lines
+	6	10	48	./testData/words
+	15	20	68	total
+	9	10	20	./testData/lines
+	6	10	48	./testData/words
+	15	20	68	total
+	9	10	20	./testData/lines
+	6	10	48	./testData/words
+	15	20	68	total
+	9	10	20	./testData/lines
+	6	10	48	./testData/words
+	15	20	68	total
+	9	10	20	./testData/lines
+	6	10	48	./testData/words
+	15	20	68	total
