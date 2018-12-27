@@ -8,7 +8,6 @@ const parse = function(userInput) {
   let args = userInput.slice();
   let option = [];
   let options = { l: "line", w: "word", c: "byte" };
-
   while (args[0].startsWith(HYPHEN)) {
     let type = args[0]
       .slice(1)
@@ -17,7 +16,6 @@ const parse = function(userInput) {
     option = option.concat(type);
     args.shift();
   }
-
   if (!option.length) {
     option = ["line", "word", "byte"];
   }

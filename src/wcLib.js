@@ -27,15 +27,13 @@ const getCounts = function(contents, option, fileName) {
   let wordCount = countWords(contents);
   let byteCount = countBytes(contents);
   let counts = [];
-  if (option.includes("line")) {
-    counts.push(lineCount);
-  }
-  if (option.includes("word")) {
-    counts.push(wordCount);
-  }
-  if (option.includes("byte")) {
-    counts.push(byteCount);
-  }
+  const wcOptions = {
+    line: lineCount,
+    word: wordCount,
+    byte: byteCount
+  };
+  counts = ["line", "word", "byte"].filter(x => option.includes(x));
+  counts = counts.map(x => wcOptions[x]);
   counts.push(fileName);
   return counts;
 };
