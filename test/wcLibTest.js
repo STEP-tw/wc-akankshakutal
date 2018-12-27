@@ -22,20 +22,44 @@ describe("wc", function() {
   });
 
   it("should return only lineCount and fileNames 'node wc.js -l file1'", function() {
-    let actualOutput = wc({ option: "l", fileNames: ["digits"] }, fs);
+    let actualOutput = wc({ option: ["l"], fileNames: ["digits"] }, fs);
     let expectedOutput = "\t9\tdigits";
     assert.equal(actualOutput, expectedOutput);
   });
 
   it("should return only byteCount and fileNames 'node wc.js -c file1'", function() {
-    let actualOutput = wc({ option: "c", fileNames: ["lines"] }, fs);
+    let actualOutput = wc({ option: ["c"], fileNames: ["lines"] }, fs);
     let expectedOutput = "\t11\tlines";
     assert.equal(actualOutput, expectedOutput);
   });
 
   it("should return only wordCount and fileNames 'node wc.js -w file1'", function() {
-    let actualOutput = wc({ option: "w", fileNames: ["lines"] }, fs);
+    let actualOutput = wc({ option: ["w"], fileNames: ["lines"] }, fs);
     let expectedOutput = "\t6\tlines";
+    assert.equal(actualOutput, expectedOutput);
+  });
+
+  it("should return string with multiple files", function() {
+    let actualOutput = wc(
+      { option: ["l"], fileNames: ["lines", "digits"] },
+      fs
+    );
+    let expectedOutput = "\t5\tlines\n\t9\tdigits\n\t14\ttotal";
+    assert.equal(actualOutput, expectedOutput);
+  });
+
+  it("should return two options with a file ", function() {
+    let actualOutput = wc({ option: ["l", "c"], fileNames: ["lines"] }, fs);
+    let expectedOutput = "\t5\t11\tlines";
+    assert.equal(actualOutput, expectedOutput);
+  });
+
+  it("should return two options of multiple files", function() {
+    let actualOutput = wc(
+      { option: ["l", "w"], fileNames: ["lines", "digits"] },
+      fs
+    );
+    let expectedOutput = "\t5\t6\tlines\n\t9\t10\tdigits\n\t14\t16\ttotal";
     assert.equal(actualOutput, expectedOutput);
   });
 });

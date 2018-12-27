@@ -18,11 +18,9 @@ const formatter = function(counts) {
   let output = counts.map(count => {
     return TAB + count.join(TAB);
   });
-
   if (counts.length === 1) {
     return output.join(" ");
   }
-
   let total = TAB + counts.reduce(addLists).join(TAB);
   return replaceEndElement(output, total).join(NEWLINE);
 };

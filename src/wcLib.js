@@ -22,19 +22,18 @@ const getCounts = function(contents, option, fileName) {
   let lineCount = countLines(contents);
   let wordCount = countWords(contents);
   let byteCount = countBytes(contents);
-  counts = [lineCount, wordCount, byteCount, fileName];
-  if (includesAll(option)) {
-    return counts;
-  }
+  let counts = [];
   if (option.includes("l")) {
-    return [lineCount, fileName];
+    counts.push(lineCount);
   }
   if (option.includes("w")) {
-    return [wordCount, fileName];
+    counts.push(wordCount);
   }
   if (option.includes("c")) {
-    return [byteCount, fileName];
+    counts.push(byteCount);
   }
+  counts.push(fileName);
+  return counts;
 };
 
 const getAllCounts = function(fs, option, fileName) {

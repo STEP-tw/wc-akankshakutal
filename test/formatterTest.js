@@ -36,4 +36,12 @@ describe("formatter", function() {
     let expectedOutput = "\t40\tLines\n\t50\tdigits\n\t90\ttotal";
     assert.equal(actualOutput, expectedOutput);
   });
+
+  it("should return all counts with multiple files", function() {
+    let counts = [[40, 50, 100, "Lines"], [50, 60, 200, "digits"]];
+    let actualOutput = formatter(counts);
+    let expectedOutput =
+      "\t40\t50\t100\tLines\n\t50\t60\t200\tdigits\n\t90\t110\t300\ttotal";
+    assert.equal(actualOutput, expectedOutput);
+  });
 });
