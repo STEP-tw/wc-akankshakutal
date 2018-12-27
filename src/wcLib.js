@@ -14,14 +14,6 @@ const countBytes = function(text) {
   return text.split(EMPTY).length;
 };
 
-const includesAll = function(option) {
-  return (
-    option.includes("line") &&
-    option.includes("word") &&
-    option.includes("byte")
-  );
-};
-
 const getCounts = function(contents, option, fileName) {
   let lineCount = countLines(contents);
   let wordCount = countWords(contents);

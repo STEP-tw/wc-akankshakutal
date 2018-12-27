@@ -1,25 +1,25 @@
-const { HYPHEN } = require("./constants.js");
+const { HYPHEN, EMPTY } = require("./constants.js");
 
 const creatObject = function(option, fileNames) {
   return { option, fileNames };
 };
 
 const parse = function(userInput) {
-  let args = userInput.slice();
   let option = [];
-  let options = { l: "line", w: "word", c: "byte" };
-  while (args[0].startsWith(HYPHEN)) {
-    let type = args[0]
+  let index = 0;
+  const options = { l: "line", w: "word", c: "byte" };
+  while (userInput[index].startsWith(HYPHEN)) {
+    let type = userInput[index]
       .slice(1)
-      .split("")
+      .split(EMPTY)
       .map(x => options[x]);
     option = option.concat(type);
-    args.shift();
+    index++;
   }
   if (!option.length) {
     option = ["line", "word", "byte"];
   }
-  return creatObject(option, args);
+  return creatObject(option, userInput.slice(index));
 };
 
 module.exports = {
