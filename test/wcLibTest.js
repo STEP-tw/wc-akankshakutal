@@ -14,27 +14,27 @@ let fs = mockReader(expectedFilePaths);
 describe("wc", function() {
   it("should return number of lines,words and characters in given file", function() {
     let actualOutput = wc(
-      { option: ["line", "word", "byte"], fileName: "lines" },
+      { option: ["l", "w", "c"], fileNames: ["lines"] },
       fs
     );
     let expectedOutput = "\t5\t6\t11 lines";
     assert.equal(actualOutput, expectedOutput);
   });
 
-  it("should return only lineCount and fileName 'node wc.js -l file1'", function() {
-    let actualOutput = wc({ option: "line", fileName: "digits" }, fs);
+  it("should return only lineCount and fileNames 'node wc.js -l file1'", function() {
+    let actualOutput = wc({ option: "l", fileNames: ["digits"] }, fs);
     let expectedOutput = "\t9 digits";
     assert.equal(actualOutput, expectedOutput);
   });
 
-  it("should return only byteCount and fileName 'node wc.js -c file1'", function() {
-    let actualOutput = wc({ option: "byte", fileName: "lines" }, fs);
+  it("should return only byteCount and fileNames 'node wc.js -c file1'", function() {
+    let actualOutput = wc({ option: "c", fileNames: ["lines"] }, fs);
     let expectedOutput = "\t11 lines";
     assert.equal(actualOutput, expectedOutput);
   });
 
-  it("should return only wordCount and fileName 'node wc.js -w file1'", function() {
-    let actualOutput = wc({ option: "word", fileName: "lines" }, fs);
+  it("should return only wordCount and fileNames 'node wc.js -w file1'", function() {
+    let actualOutput = wc({ option: "w", fileNames: ["lines"] }, fs);
     let expectedOutput = "\t6 lines";
     assert.equal(actualOutput, expectedOutput);
   });

@@ -20,11 +20,7 @@ const countBytes = function(text) {
 };
 
 const includesAll = function(option) {
-  return (
-    option.includes("line") &&
-    option.includes("word") &&
-    option.includes("byte")
-  );
+  return option.includes("l") && option.includes("w") && option.includes("c");
 };
 
 const getCounts = function(contents) {
@@ -35,22 +31,22 @@ const getCounts = function(contents) {
 };
 
 const wc = function(userInput, fs) {
-  let { option, fileName } = userInput;
-  let fileContents = fs.readFileSync(fileName, "utf8");
+  let { option, fileNames } = userInput;
+  let fileContents = fs.readFileSync(fileNames[0], "utf8");
   let counts = getCounts(fileContents);
   if (includesAll(option)) {
-    return defaultFormatter(counts, fileName);
+    return defaultFormatter(counts, fileNames[0]);
   }
-  if (option.includes("line")) {
-    return lineFormatter(counts, fileName);
-  }
-
-  if (option.includes("word")) {
-    return wordFormatter(counts, fileName);
+  if (option.includes("l")) {
+    return lineFormatter(counts, fileNames[0]);
   }
 
-  if (option.includes("byte")) {
-    return byteFormatter(counts, fileName);
+  if (option.includes("w")) {
+    return wordFormatter(counts, fileNames[0]);
+  }
+
+  if (option.includes("c")) {
+    return byteFormatter(counts, fileNames[0]);
   }
 };
 

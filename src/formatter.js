@@ -2,25 +2,25 @@ const { TAB, SPACE, EMPTY } = require("./constants.js");
 
 const defaultFormatter = function(
   { lineCount, wordCount, byteCount },
-  fileName
+  fileNames
 ) {
   const counts = [EMPTY, lineCount, wordCount, byteCount];
-  return counts.join(TAB) + SPACE + fileName;
+  return counts.join(TAB) + SPACE + fileNames;
 };
 
-const lineFormatter = function({ lineCount }, fileName) {
+const lineFormatter = function({ lineCount }, fileNames) {
   const count = [EMPTY, lineCount];
-  return count.join(TAB) + SPACE + fileName;
+  return count.join(TAB) + SPACE + fileNames;
 };
 
-const wordFormatter = function({ wordCount }, fileName) {
+const wordFormatter = function({ wordCount }, fileNames) {
   const count = [EMPTY, wordCount];
-  return count.join(TAB) + SPACE + fileName;
+  return count.join(TAB) + SPACE + fileNames;
 };
 
-const byteFormatter = function({ byteCount }, fileName) {
+const byteFormatter = function({ byteCount }, fileNames) {
   const count = [EMPTY, byteCount];
-  return count.join(TAB) + SPACE + fileName;
+  return count.join(TAB) + SPACE + fileNames;
 };
 
 module.exports = {
