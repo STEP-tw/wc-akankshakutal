@@ -1,6 +1,4 @@
-const TAB = "\t";
-const SPACE = " ";
-const EMPTY = "";
+const { TAB, SPACE, EMPTY } = require("./constants.js");
 
 const defaultFormatter = function(
   { lineCount, wordCount, byteCount },

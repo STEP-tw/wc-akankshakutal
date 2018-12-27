@@ -5,8 +5,7 @@ const {
   wordFormatter
 } = require("./formatter.js");
 
-const NEWLINE = "\n";
-const EMPTY = "";
+const { NEWLINE, EMPTY } = require("./constants");
 
 const countLines = function(text) {
   return text.split(NEWLINE).length - 1;
