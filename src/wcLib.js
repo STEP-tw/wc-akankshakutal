@@ -19,24 +19,25 @@ const wcOptionCounter = {
   word: countWords,
   byte: countBytes
 };
+const validOptions = ["line", "word", "byte"];
 
-const getCounts = function(contents, option) {
-  let counts = ["line", "word", "byte"].filter(x => option.includes(x));
+const getCounts = function(contents, options) {
+  let counts = validOptions.filter(x => options.includes(x));
   counts = counts.map(option => wcOptionCounter[option](contents));
   return counts;
 };
 
-const getFileCounts = function(fs, option, fileName) {
+const getFileCounts = function(fs, options, filePath) {
   let { readFileSync } = fs;
-  let contents = readFileSync(fileName, "utf8");
-  let fileCounts = getCounts(contents, option);
-  fileCounts.push(fileName);
+  let contents = readFileSync(filePath, "utf8");
+  let fileCounts = getCounts(contents, options);
+  fileCounts.push(filePath);
   return fileCounts;
 };
 
 const wc = function(userInput, fs) {
-  let { option, fileNames } = userInput;
-  let counts = fileNames.map(getFileCounts.bind(null, fs, option));
+  let { options, filePaths } = userInput;
+  let counts = filePaths.map(getFileCounts.bind(null, fs, options));
   return formatter(counts);
 };
 

@@ -14,34 +14,34 @@ let fs = mockReader(expectedFilePaths);
 describe("wc", function() {
   it("should return number of lines,words and characters in given file", function() {
     let actualOutput = wc(
-      { option: ["line", "word", "byte"], fileNames: ["lines"] },
+      { options: ["line", "word", "byte"], filePaths: ["lines"] },
       fs
     );
     let expectedOutput = "\t5\t6\t11\tlines";
     assert.equal(actualOutput, expectedOutput);
   });
 
-  it("should return only lineCount and fileNames 'node wc.js -l file1'", function() {
-    let actualOutput = wc({ option: ["line"], fileNames: ["digits"] }, fs);
+  it("should return only lineCount and filePaths 'node wc.js -l file1'", function() {
+    let actualOutput = wc({ options: ["line"], filePaths: ["digits"] }, fs);
     let expectedOutput = "\t9\tdigits";
     assert.equal(actualOutput, expectedOutput);
   });
 
-  it("should return only byteCount and fileNames 'node wc.js -c file1'", function() {
-    let actualOutput = wc({ option: ["byte"], fileNames: ["lines"] }, fs);
+  it("should return only byteCount and filePaths 'node wc.js -c file1'", function() {
+    let actualOutput = wc({ options: ["byte"], filePaths: ["lines"] }, fs);
     let expectedOutput = "\t11\tlines";
     assert.equal(actualOutput, expectedOutput);
   });
 
-  it("should return only wordCount and fileNames 'node wc.js -w file1'", function() {
-    let actualOutput = wc({ option: ["word"], fileNames: ["lines"] }, fs);
+  it("should return only wordCount and filePaths 'node wc.js -w file1'", function() {
+    let actualOutput = wc({ options: ["word"], filePaths: ["lines"] }, fs);
     let expectedOutput = "\t6\tlines";
     assert.equal(actualOutput, expectedOutput);
   });
 
   it("should return string with multiple files", function() {
     let actualOutput = wc(
-      { option: ["line"], fileNames: ["lines", "digits"] },
+      { options: ["line"], filePaths: ["lines", "digits"] },
       fs
     );
     let expectedOutput = "\t5\tlines\n\t9\tdigits\n\t14\ttotal";
@@ -50,7 +50,7 @@ describe("wc", function() {
 
   it("should return two options with a file ", function() {
     let actualOutput = wc(
-      { option: ["line", "byte"], fileNames: ["lines"] },
+      { options: ["line", "byte"], filePaths: ["lines"] },
       fs
     );
     let expectedOutput = "\t5\t11\tlines";
@@ -59,7 +59,7 @@ describe("wc", function() {
 
   it("should return two options of multiple files", function() {
     let actualOutput = wc(
-      { option: ["line", "word"], fileNames: ["lines", "digits"] },
+      { options: ["line", "word"], filePaths: ["lines", "digits"] },
       fs
     );
     let expectedOutput = "\t5\t6\tlines\n\t9\t10\tdigits\n\t14\t16\ttotal";

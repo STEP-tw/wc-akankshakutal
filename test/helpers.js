@@ -7,8 +7,8 @@ const mockUtf8Reader = function(expectedFilePaths, expectedEncoding) {
 };
 
 const mockExistsSync = function(expectedFilePaths) {
-  return function(actualFileName) {
-    return actualFileName in expectedFilePaths;
+  return function(actualfilePath) {
+    return actualfilePath in expectedFilePaths;
   };
 };
 
@@ -20,4 +20,3 @@ const mockReader = function(expectedFilePaths) {
 };
 
 exports.mockReader = mockReader;
-

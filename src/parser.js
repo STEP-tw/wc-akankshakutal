@@ -1,26 +1,26 @@
 const { HYPHEN, EMPTY } = require("./constants.js");
 
-const creatObject = function(option, fileNames) {
-  return { option, fileNames };
+const creatObject = function(options, filePaths) {
+  return { options, filePaths };
 };
 
-const options = { l: "line", w: "word", c: "byte" };
+const wcOptions = { l: "line", w: "word", c: "byte" };
 
 const parse = function(userInput) {
-  let option = [];
+  let options = [];
   let index = 0;
   while (userInput[index].startsWith(HYPHEN)) {
     let type = userInput[index]
       .slice(1)
       .split(EMPTY)
-      .map(x => options[x]);
-    option = option.concat(type);
+      .map(x => wcOptions[x]);
+    options = options.concat(type);
     index++;
   }
-  if (!option.length) {
-    option = ["line", "word", "byte"];
+  if (!options.length) {
+    options = ["line", "word", "byte"];
   }
-  return creatObject(option, userInput.slice(index));
+  return creatObject(options, userInput.slice(index));
 };
 
 module.exports = {
