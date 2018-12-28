@@ -1,6 +1,6 @@
 const { formatter } = require("./formatter.js");
 
-const { getLines, getWords, getBytes } = require("./utils/string.js");
+const { getLines, getWords } = require("./utils/string.js");
 
 const countLines = function(lines) {
   return getLines(lines).length - 1;
@@ -11,7 +11,7 @@ const countWords = function(words) {
 };
 
 const countBytes = function(bytes) {
-  return getBytes(bytes).length;
+  return bytes.length;
 };
 
 const wcOptionCounter = {
