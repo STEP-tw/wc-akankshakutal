@@ -6,6 +6,12 @@ const addLists = function(list1, list2) {
   return result;
 };
 
+const findFirstIndexOf = function(list, predicate) {
+  let allOccurences = list.filter(predicate);
+  return list.indexOf(allOccurences[0]);
+};
+
 module.exports = {
-  addLists
+  addLists,
+  findFirstIndexOf
 };
