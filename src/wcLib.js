@@ -35,27 +35,27 @@ const getFileCounts = function(contents, options, filePath) {
 };
 
 const reader = function(
-  result,
-  fileName,
+  counts,
+  filePath,
   { options, filePaths },
   logger,
   err,
-  data
+  content
 ) {
-  result.push(getFileCounts(data, options, fileName));
-  if (result.length == filePaths.length) {
-    formatter(result, filePaths, logger);
+  counts.push(getFileCounts(content, options, filePath));
+  if (counts.length == filePaths.length) {
+    formatter(counts, filePaths, logger);
   }
 };
 
 const wc = function(userInput, fs, logger) {
-  let result = [];
+  let counts = [];
   let { filePaths } = userInput;
   for (let filePath of filePaths) {
-    let fileReader = reader.bind(null, result, filePath, userInput, logger);
+    let fileReader = reader.bind(null, counts, filePath, userInput, logger);
     fs.readFile(filePath, "utf8", fileReader);
   }
-  return result;
+  return counts;
 };
 
 module.exports = {

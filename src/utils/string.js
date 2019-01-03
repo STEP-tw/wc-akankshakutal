@@ -1,4 +1,4 @@
-const { NEWLINE, EMPTY } = require("../constants.js");
+const { NEWLINE } = require("../constants.js");
 
 const getLines = function(text) {
   return text.split(NEWLINE);
