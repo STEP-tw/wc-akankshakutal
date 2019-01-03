@@ -1,3 +1,4 @@
+/* eslint-env mocha */
 const assert = require("assert");
 const { wc } = require("../src/wcLib.js");
 const { mockReader } = require("./helpers.js");
