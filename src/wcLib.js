@@ -19,6 +19,7 @@ const wcOptionCounter = {
   word: countWords,
   byte: countBytes
 };
+
 const validOptions = ["line", "word", "byte"];
 
 const getCounts = function(contents, options) {
@@ -27,20 +28,37 @@ const getCounts = function(contents, options) {
   return counts;
 };
 
-const getFileCounts = function(fs, options, filePath) {
-  let { readFileSync } = fs;
-  let contents = readFileSync(filePath, "utf8");
+const getFileCounts = function(contents, options, filePath) {
   let fileCounts = getCounts(contents, options);
   fileCounts.push(filePath);
   return fileCounts;
 };
 
-const wc = function(userInput, fs) {
-  let { options, filePaths } = userInput;
-  let counts = filePaths.map(getFileCounts.bind(null, fs, options));
-  return formatter(counts, filePaths);
+const reader = function(
+  result,
+  fileName,
+  { options, filePaths },
+  logger,
+  err,
+  data
+) {
+  result.push(getFileCounts(data, options, fileName));
+  if (result.length == filePaths.length) {
+    formatter(result, filePaths, logger);
+  }
+};
+
+const wc = function(userInput, fs, logger) {
+  let result = [];
+  let { filePaths } = userInput;
+  for (let filePath of filePaths) {
+    let fileReader = reader.bind(null, result, filePath, userInput, logger);
+    fs.readFile(filePath, "utf8", fileReader);
+  }
+  return result;
 };
 
 module.exports = {
-  wc
+  wc,
+  reader
 };

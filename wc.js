@@ -5,7 +5,7 @@ const { parse } = require("./src/parser.js");
 const main = function() {
   let userInput = process.argv.slice(2);
   let parsedInput = parse(userInput);
-  console.log(wc(parsedInput, fs));
+  wc(parsedInput, fs, console.log);
 };
 
 main();

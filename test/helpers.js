@@ -1,7 +1,7 @@
 const mockUtf8Reader = function(expectedFilePaths, expectedEncoding) {
-  return function(actualFilePath, actualEncoding) {
+  return function(actualFilePath, actualEncoding, callback) {
     if (expectedEncoding === actualEncoding) {
-      return expectedFilePaths[actualFilePath];
+      callback("", expectedFilePaths[actualFilePath]);
     }
   };
 };
@@ -14,9 +14,14 @@ const mockExistsSync = function(expectedFilePaths) {
 
 const mockReader = function(expectedFilePaths) {
   return {
-    readFileSync: mockUtf8Reader(expectedFilePaths, "utf8"),
-    existsSync: mockExistsSync(expectedFilePaths)
+    readFile: mockUtf8Reader(expectedFilePaths, "utf8"),
+    existsFile: mockExistsSync(expectedFilePaths)
   };
 };
 
+const mockLogger = function(text) {
+  return text;
+};
+
 exports.mockReader = mockReader;
+exports.mockLogger = mockLogger;

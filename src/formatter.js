@@ -8,19 +8,23 @@ const arrangeCounts = function(counts, filePaths) {
     }
   });
 };
-const formatter = function(counts, filePaths) {
+
+const formatter = function(counts, filePaths, logger) {
   counts = arrangeCounts(counts, filePaths);
+  let result;
   let output = counts.map(count => {
     return TAB + count.join(TAB);
   });
   if (counts.length === 1) {
-    return output.join(EMPTY);
+    result = output.join(EMPTY);
+  } else {
+    let total = counts.reduce(addLists);
+    let length = total.length;
+    total[length - 1] = "total";
+    total = TAB + total.join(TAB);
+    result = output.concat(total).join(NEWLINE);
   }
-  let total = counts.reduce(addLists);
-  let length = total.length;
-  total[length - 1] = "total";
-  total = TAB + total.join(TAB);
-  return output.concat(total).join(NEWLINE);
+  return logger(result);
 };
 
 module.exports = {
