@@ -1,7 +1,15 @@
 const { NEWLINE, TAB, EMPTY } = require("./constants.js");
 const { addLists } = require("./utils/array.js");
 
-const formatter = function(counts) {
+const arrangeCounts = function(counts, filePaths) {
+  return filePaths.map(filePath => {
+    for (let count of counts) {
+      if (count.includes(filePath)) return count;
+    }
+  });
+};
+const formatter = function(counts, filePaths) {
+  counts = arrangeCounts(counts, filePaths);
   let output = counts.map(count => {
     return TAB + count.join(TAB);
   });

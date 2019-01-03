@@ -38,7 +38,7 @@ const getFileCounts = function(fs, options, filePath) {
 const wc = function(userInput, fs) {
   let { options, filePaths } = userInput;
   let counts = filePaths.map(getFileCounts.bind(null, fs, options));
-  return formatter(counts);
+  return formatter(counts, filePaths);
 };
 
 module.exports = {
